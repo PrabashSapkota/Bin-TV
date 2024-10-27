@@ -1,0 +1,82 @@
+@media only screen and (max-width: 1280px) {
+    *{
+        margin: 0;
+        padding: 0;
+        background-color: #F7F7F7;
+
+    }
+    .header{
+        margin-top: 5%;
+        margin-left: 5%;
+        margin-right:5%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap:25%;
+        
+        
+    }
+    .profile img{
+        border-radius: 50%;
+        border: white solid 2px;
+    }
+    .title {
+        align-items: center;
+    }
+    .profile{
+        margin:auto;
+    }
+    .search i{
+        background-color: white;
+        border-radius:10px 10px 10px 10px;
+        padding:7px;
+        color:rgb(32, 32, 32);
+    }
+    .box{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: small;
+        background-color: rgb(255, 255, 255);
+        margin:5%;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        display: flex;
+        padding: 10px;
+        column-gap: 5%;
+        border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+    .box img{
+        width:40px;
+        background-color: white;
+        }
+    .datetime{
+        color:rgb(18, 181, 226);
+        font-weight: bold;
+        background-color: white;
+    }  
+     .name1 ,.name2 {
+        background-color: white;
+
+     } 
+     h3{
+        background-color: white;
+     }
+     .box:hover{
+        cursor: pointer;
+
+     }
+     a{
+        text-decoration: none;
+        color:black;
+     }
+     .marquee{
+        margin-top:3%;
+        border: 2px solid rgb(27, 135, 198);
+        margin-left:5%;
+        margin-right:5%;
+        border-radius: 7px;
+        padding:3px;
+        color:rgb(28, 13, 6);
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+     }
+}
