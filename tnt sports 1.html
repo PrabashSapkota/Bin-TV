@@ -1,61 +1,56 @@
+<!DOCTYPE html>
 <html>
-<body>
-<style>
-*{
-width:100%;
-margin:0;
-padding:0;}
-</style>
-<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>JWPlayer with hls.js engine and P2P demo</title>
-    <script src="//ssl.p.jwpcdn.com/player/v/8.34.0/jwplayer.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/@swarmcloud/hls/sw-p2p-engine.min.js"></script>
-    <style>
-        #wrapper {
-            width:100%;
-            margin:0;
-            display: block;
-        }
-    </style>
+<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>mui-player demo</title>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mui-player@1.7.0/dist/mui-player.min.css">
+    <script src="//cdn.jsdelivr.net/npm/mui-player@1.7.0/dist/mui-player.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/@swarmcloud/hls/hls.min.js"></script>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      width:100%;}
+    .flex{
+      display:none!important;}
+    #liveViewers{
+            display:none!important;}
+  </style>
 </head>
+
 <body>
-<div id="wrapper">
-    <div id="player"></div>
-</div>
+<div id="mui-player" style="max-width:70%;margin-top:-110px;margin-left:0;margin-right:0;"></div>
+</body>
 
 <script>
-    jwplayer.key = "uoW6qHjBL3KNudxKVnwa3rt5LlTakbko9e6aQ6VUyKQ=";
     var p2pConfig = {
+        logLevel: 'debug',
         live: false,        // set to true in live mode
         swFile: './sw.js',
         // trackerZone: 'hk',        // if using Hongkong tracker
         // trackerZone: 'us',        // if using USA tracker
         // token: YOUR_TOKEN
         // Other p2pConfig options provided by CDNBye
-    };
-    new P2PEngineHls.ServiceWorkerEngine(p2pConfig);
-    var player = jwplayer("player");
-    P2PEngineHls.tryRegisterServiceWorker(p2pConfig).then(() => {
-        player.setup({
-            file: "https://azonew.newkso.ru/azo/eplayerdigitvbt1/mono.m3u8",
-            width: 512,
-            height: 288,
-            muted: true,
-            autostart: true,
-            hlsjsdefault: true,
-            hlsjsConfig: {
-                // debug: true,
-                // Other hlsjsConfig options provided by hls.js
-                p2pConfig
+    }
+    if (!Hls.P2pEngine.isMSESupported()) {
+        // use ServiceWorker based p2p engine, need additional file sw.js
+        new Hls.P2pEngine.ServiceWorkerEngine(p2pConfig)
+    }
+    Hls.P2pEngine.tryRegisterServiceWorker(p2pConfig).then(() => {
+        var mp = new MuiPlayer({
+            container: document.getElementById("mui-player"),
+            src: 'https://azonew.newkso.ru/azo/eplayerdigitvbt1/mono.m3u8',
+            parse: {
+                type: 'hls',
+                loader: Hls,
+                config: {
+                    debug: false,
+                    p2pConfig,
+                },
             },
         });
-    });
+    })
+
 </script>
-</body>
-</html>
-
-</body>
-
 </html>
